@@ -39,6 +39,11 @@ h3 {
     color: #ffc107;
 }
 
+h5 {
+    padding-top: 10%;
+    color: #ffc107;
+}
+
 .title {
     font-weight: bolder;
     letter-spacing: .3rem;
