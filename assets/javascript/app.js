@@ -1,5 +1,5 @@
 var now = moment();
-console.log(now);
+console.log(now.format("hh:mm"));
 
 //▓▓▓▓▓ arrays for table ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 
@@ -127,7 +127,9 @@ CALCULATE function
  - uses moment.js and logic to take the .val of #first-train-time and #train-freq and output *next arrival and *minutes away, along with name, destination and frequency, directly.
     //if (now < first-train-time)
         find minutes between now and first-train-time --> MINUTESAWAY
-    //else if (now)
+    //else ()
+        while (now > first-train-time)
+
     //this output is pushed as an object to the table array, then the RENDERTABLE function is called.
 
 RENDERTABLE function
@@ -138,6 +140,13 @@ RENDERTABLE function
 */
 
 
+var firsttraintime = 10;
+var now = 45;
+var freq = 30;
 
+//
+var nextTrain = firsttraintime;
 
-
+while (now > nextTrain) {
+        nextTrain + [i].frequency;        
+}

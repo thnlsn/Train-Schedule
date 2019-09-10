@@ -2,9 +2,16 @@
     color: white;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     background-image: url("../images/trainBackground.jpg");
     background-size: cover;
+    height: 100vh;
+    min-height: 100vh;
+    margin: 0%
 }
 
 .section {
@@ -13,7 +20,7 @@ body {
     border-width: 2px;
     border-color: white;
     border-radius: 1%;
-    background-color: rgba(29, 25, 16, 0.8);
+    background-color: rgba(29, 25, 16, 0.85);
 }
 
 table, form {
@@ -60,4 +67,25 @@ h5 {
 
 .tableHead {
     background-color: #ffc10742;
+}
+
+
+
+
+
+
+
+  
+  .container-fluid { 
+    /* The image used */
+    background-image: url("../images/trainBackground.jpg");
+  
+    /* Full height */
+    height: 100%; 
+  
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
