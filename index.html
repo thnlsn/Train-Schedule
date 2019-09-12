@@ -28,7 +28,6 @@
             <table class="table table-bordered">
                 <thead class="tableHead">
                     <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Train Name</th>
                     <th scope="col">Destination</th>
                     <th scope="col">Frequency (min)</th>
@@ -107,8 +106,27 @@
 
 
 
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-database.js"></script>
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#config-web-app -->
 
-
+        <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBYs-fJplBRtV_AvnvohOShDR4wEmHBhlE",
+            authDomain: "train-schedule-ccb37.firebaseapp.com",
+            databaseURL: "https://train-schedule-ccb37.firebaseio.com",
+            projectId: "train-schedule-ccb37",
+            storageBucket: "https://train-schedule-ccb37.firebaseio.com/",
+            messagingSenderId: "578541608287",
+            appId: "1:578541608287:web:49be199d7ef9b957e62aea"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        
+        </script>
         <script src="https://unpkg.com/moment"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="./assets/javascript/app.js"></script>
