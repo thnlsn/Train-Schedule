@@ -1,7 +1,7 @@
-var now = moment();
-console.log(now.format("hh:mm"));
+var now = moment().format("hh:mm");
+console.log(now);
 
-//▓▓▓▓▓ arrays for table ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+//▓▓▓▓▓ array for table ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 
 var tableArray = [
     //0 (1)
@@ -34,31 +34,54 @@ var tableArray = [
     //*NEXT ARRIVAL*
     //*MINUTES AWAY*
 
-//▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+//▓▓▓▓▓ render table function ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 
-
+//THIS WILL BE INVOKED IN THE BUTTON CLICK EVENT
 function renderTable() {
+/*     var m = moment(new Date());
+    var timeNow = (m.hour()*60) + m.minute();
+    console.log(timeNow); */
+
+//    var n = (moment.duration(tableArray[2].firstTime).asHours())*60;
+//    console.log(n);
+
     for (var i = 0; i < tableArray.length; i++) {
 
+        //COLUMN 1 #
+        var trainNum = i+1;
+        console.log("number ▓ = " + trainNum);
+        //COLUMN 2 NAME
+        var trainName = tableArray[i].name;
+        console.log("name ▓ = " + trainName);
+        //COLUMN 3 DESTINATION
+        var trainDest = tableArray[i].destination;
+        console.log("destination ▓ = " + trainDest);
+        //COLUMN 4 FREQUENCY
+        var trainFreq = tableArray[i].frequency;
+        console.log("frequency ▓ = " + trainFreq);
+
+        //COLUMN 5 NEXTARRIVAL
+        var m = moment(new Date());
+        var timeNow = (m.hour()*60) + m.minute();
+        console.log("timenow = " + timeNow); //THE TIME NOW
+        var n = (moment.duration(tableArray[i].firstTime).asHours())*60;
+        console.log("firsttraintime = " + n); //THE FIRST TRAIN TIME
+
+        var nextArrival = moment().startOf('day').add(calcNextArrival(timeNow, n, trainFreq), 'minutes').format('hh:mm A')
+        console.log(calcNextArrival(timeNow, n, trainFreq)); //NEXT ARRIVAL IN TOTAL MINUTES
+        console.log(nextArrival); //THE NEXT ARRIVAL IN CORRECT FORMAT
+
+        //COLUMN 6 MINUTESAWAY
+        calcMinutesAway(timeNow, nextArrival);
+        console.log(calcMinutesAway(timeNow, nextArrival));
+
+
+
+
+/*         var nextArrival = calcNextArrival(timeNow, firstTrainTime, trainFreq); */
+/*         console.log(nextArrival); */
+        console.log("------------");
     }
-}
-
-
-
-
-
-
-
-//▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-
-
-
-
-
-
-
-
-//▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 
 
 
@@ -68,7 +91,6 @@ function renderTable() {
 
 
 
-//▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 
 
 
@@ -77,7 +99,117 @@ function renderTable() {
 
 
 
-//▓▓▓▓▓ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*     
+        for (var i = 0; i < tableArray.length; i++) {
+        var trOpen = "<tr>";
+        var thOpen = "<th scope='row'>";
+        var thClose = "</th>"
+        var tdOpen = "<td>";
+        var tdClose = "</td>";
+        var trClose = "</tr>";
+        console.log(trOpen + thOpen + (i+1) + thClose + tdOpen + tableArray[i].name + tdClose + tdOpen + tableArray[i].destination + tdClose + tdOpen + tdClose + tdOpen + tdClose + tdOpen + tdClose + trClose);
+
+        $("train-table").append(
+            trOpen +
+            thOpen + (i+1) +
+            thClose +
+            tdOpen + tableArray[i].name + tdClose +
+            tdOpen + tableArray[i].destination + tdClose +
+            tdOpen + tableArray[i].frequency + tdClose +
+            tdOpen +  tdClose +
+            tdOpen +  tdClose +
+            trClose
+        )
+
+    }; 
+*/
+};
+
+/* 
+<tr>
+<th scope="row">3</th>
+<td>Bullet Train</td>
+<td>Magazine Mountain</td>
+<td>120</td>
+<td></td>
+<td></td>
+</tr> 
+*/
+
+
+
+//▓▓▓▓▓ push user inputted values to array ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+
+//FUNCTION TO PUSH VALUES TO ARRAY AS AN OBJECT
+$("#submit-button").click(function() {
+    event.preventDefault()
+
+    var obj = {
+        name: $("#train-name").val().trim(),
+        destination: $("#train-destination").val().trim(),
+        time: $("#train-time").val().trim(),
+        frequency: parseInt($("#train-freq").val().trim(), 10),
+    };
+
+    tableArray.push(obj);
+    $("#train-name, #train-destination, #train-time, #train-freq").val('');
+    console.log(obj);
+    console.log(tableArray);
+
+    //renderTable();
+});
+
+//▓▓▓▓▓ calculate next arrival ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+
+function calcNextArrival(currentTime, firstTrain, trainFrequency) {
+    if (currentTime < firstTrain) {
+        return firstTrain
+    } else {
+        while (currentTime > firstTrain) {
+            firstTrain += trainFrequency;
+            if (firstTrain > currentTime) {
+                return firstTrain;
+            };
+        };
+    };
+};
+
+
+
+//▓▓▓▓▓ calculate minutes away ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+
+function calcMinutesAway(currentTime, nextTrain) {
+    return parseInt(nextTrain - currentTime, 10);
+};
+console.log(calcMinutesAway(2, 4))
+
+
+
+
+
+//▓▓▓▓▓ parse times function ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+
 
 
 
@@ -139,6 +271,12 @@ RENDERTABLE function
 
 */
 
+/* if (now < firstTime) {
+    firstTime.subtract(now.format())
+}
+
+
+
 
 var firsttraintime = 10;
 var now = 45;
@@ -148,5 +286,11 @@ var freq = 30;
 var nextTrain = firsttraintime;
 
 while (now > nextTrain) {
-        nextTrain + [i].frequency;        
-}
+        nextTrain + [i].frequency;    */     
+ //after this take the value of nextTrain and the difference of it and now --> MINUTESAWAY
+
+
+
+
+
+/* var regEx = /^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$/; */
